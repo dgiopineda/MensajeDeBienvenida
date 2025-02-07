@@ -1,5 +1,5 @@
 ﻿from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext, ChatMemberHandler
 
 # Token de tu bot (lo obtuviste del BotFather)
 TOKEN = '7590055696:AAFeDVeNttLoBwOCvGfAc76igDabYOxeLt8'
@@ -19,22 +19,22 @@ async def new_member(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(f"¡Bienvenido, {member.full_name}! FAMILIA ALFA.")
         
         # Enviar imagen de bienvenida para nuevos miembros
-        with open(r'C:\Users\10 Spring Creators\Desktop\Bots\Banner 4 Bienvenido.jpg', 'rb') as photo:
-
+        with open('Banner 4 Bienvenido.jpg', 'rb') as photo:
             await update.message.reply_photo(photo=photo, caption="¡FAMILIA-FUERZA-VICTORIA!")
 
 # Configuración principal del bot
-def main() -> None:
+async def main() -> None:
     application = Application.builder().token(TOKEN).build()
     
     # Maneja el comando /start
     application.add_handler(CommandHandler("start", start))
     
     # Maneja los nuevos miembros en el grupo
-    application.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, new_member))
+    application.add_handler(ChatMemberHandler(new_member, filters.StatusUpdate.NEW_CHAT_MEMBERS))
     
     # Comienza el bot
-    application.run_polling()
+    await application.run_polling()
 
 if __name__ == '__main__':
-    main()
+    import asyncio
+    asyncio.run(main())
