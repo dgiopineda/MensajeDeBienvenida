@@ -10,7 +10,7 @@ async def start(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text(f"¡Hola, {user.first_name}! Bienvenido a la Familia ALFA")
     
     # Enviar imagen de bienvenida
-    with open(r'C:\Users\10 Spring Creators\Desktop\Bots\Banner 4 Bienvenido.jpg', 'rb') as photo:
+    with open('Banner 4 Bienvenido.jpg', 'rb') as photo:
         await update.message.reply_photo(photo=photo, caption="¡Nos alegra que te unas a nosotros!")
 
 # Función para manejar los nuevos miembros del grupo
