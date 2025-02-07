@@ -2,7 +2,7 @@
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 
 # Token de tu bot (lo obtuviste del BotFather)
-TOKEN = '7590055696:AAE0iv1D3H6YBluMXMrFCFKwEkYVF50MH0w'
+TOKEN = '7590055696:AAFeDVeNttLoBwOCvGfAc76igDabYOxeLt8'
 
 # Función de inicio que responde con un mensaje de bienvenida y envía una imagen
 async def start(update: Update, context: CallbackContext) -> None:
@@ -20,6 +20,7 @@ async def new_member(update: Update, context: CallbackContext) -> None:
         
         # Enviar imagen de bienvenida para nuevos miembros
         with open(r'C:\Users\10 Spring Creators\Desktop\Bots\Banner 4 Bienvenido.jpg', 'rb') as photo:
+
             await update.message.reply_photo(photo=photo, caption="¡FAMILIA-FUERZA-VICTORIA!")
 
 # Configuración principal del bot
