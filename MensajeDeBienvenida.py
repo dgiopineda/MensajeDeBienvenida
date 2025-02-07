@@ -23,21 +23,18 @@ async def new_member(update: Update, context: CallbackContext) -> None:
             await update.message.reply_photo(photo=photo, caption="¡FAMILIA-FUERZA-VICTORIA!")
 
 # Configuración principal del bot
-async def main() -> None:
+def main() -> None:
     application = Application.builder().token(TOKEN).build()
-    
+
     # Maneja el comando /start
     application.add_handler(CommandHandler("start", start))
-    
+
     # Maneja los nuevos miembros en el grupo
     application.add_handler(ChatMemberHandler(new_member, filters.StatusUpdate.NEW_CHAT_MEMBERS))
-    
-    # Comienza el bot
-    await application.run_polling()
 
-# Asegúrate de ejecutar la función main correctamente, sin usar asyncio.run()
+    # Comienza el bot
+    application.run_polling()
+
 if __name__ == '__main__':
-    import asyncio
-    # Ejecutamos la función main directamente, sin asyncio.run()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    main()
+
